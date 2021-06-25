@@ -1,12 +1,18 @@
-console.log('popup.js Successfully running');
-
-var toChange = "laptop.jpg";
-
-var prevImages = document.getElementsByTagName('img');
-
-for(img of prevImages){
-    // console.log(img.src);
-    var url = chrome.extension.getURL(toChange);
-    img.src=url;
-    console.log(url);
-}
+$(function(){
+    $('#spent').click(function(){
+        chrome.storage.sync.get('total', function(budget) {
+            // console.log('Value currently is ' + result.key);
+            var newTot=0;
+            if(budget.total){
+                newTot+=parseInt(budget.total);
+            }
+            var added = $('#amount').val();
+            if(amount){
+                newTot+= parseInt(added);
+            }
+            chrome.storage.sync.set({'total': newTot});
+            $('#total').text(newTot);
+            $('#amount').val('');
+        });
+    });
+});

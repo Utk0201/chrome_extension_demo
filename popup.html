@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="popup.js"></script>
-    <title>Hello world</title>
+    <title>Budget manager</title>
 </head>
+
 <body>
-    <h1 id="greet">Hi world</h1>
+    <h1>Budget manager</h1>
+    <h2>Total spent: <span id="total">0</span></h2>
+    <h2>Limit:<span id="limit"></span></h2>
+    <h2>Enter amount</h2>
+    <input type="text" id="amount">
+    <input type="submit" id="spent" value="spend">
 </body>
+
 </html>
