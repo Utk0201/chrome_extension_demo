@@ -1,6 +1,7 @@
 $(function(){
     $('#setLimit').click(function(){
         var maxBudget = $('#limit').val();
+        $('#limit').val('');
         chrome.storage.sync.set({'maxBudget':parseInt(maxBudget)});
     });
     $('#resetTot').click(function(){
