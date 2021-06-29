@@ -1,4 +1,9 @@
 $(function(){
+    chrome.storage.sync.get(['tasks'],function(allTasks){
+        if(allTasks.tasks && allTasks.tasks.length){
+            $('#task').text(allTasks.tasks[allTasks.tasks.length-1]);
+        }
+    });
     $('#doTask').click(function(){
         chrome.storage.sync.get(['tasks'],function(allTasks){
             var prevTasks=[];
