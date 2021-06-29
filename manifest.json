@@ -1,8 +1,8 @@
 {
     "manifest_version":2,
-    "name":"Kitten extension",
+    "name":"Productivity management extension",
     "version":"1.0.0",
-    "description":"insert kitten images",
+    "description":"Boost your productivity using this extension",
     "icons":{
         "128":"money128.png",
         "48":"money48.png",
@@ -11,11 +11,6 @@
     "browser_action":{
         "default_icon":"money16.png",
         "default_popup":"popup.html"
-    },
-    "options_page":"options.html",
-    "background":{
-        "scripts":["eventPage.js"],
-        "persistent":false      
     },
     "permissions":[
         "storage",

@@ -7,17 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="jquery-3.6.0.min.js"></script>
     <script src="popup.js"></script>
+    <link rel="stylesheet" href="popup.css">
     <title>Budget manager</title>
 </head>
 
 <body>
-    <h1>Budget manager</h1>
-    <h2>Total spent: <span id="total">0</span></h2>
-    <h2>Limit:<span id="limit"></span></h2>
-    <h2>Enter amount</h2>
-    <input type="text" id="amount">
-    <input type="submit" id="spent" value="spend">
-    <input type="submit" id="reset" value="reset">
+    <div class="contents">
+        <h1>Task manager</h1>
+        <!-- <h2>Total spent: <span id="total">0</span></h2>
+        <h2>Limit:<span id="limit"></span></h2>
+        <h2>Enter amount</h2> -->
+        <h2>Task: <span id="task" ></span></h2>
+    </div>
+    <div class="form-items">
+        <input type="text" id="newTask">
+        <input type="submit" id="doTask" value="Enter Task">
+        <input type="submit" id="reset" value="Reset All Tasks">
+    </div>
 </body>
 
 </html>

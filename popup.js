@@ -1,4 +1,27 @@
 $(function(){
+    $('#doTask').click(function(){
+        chrome.storage.sync.get(['tasks'],function(allTasks){
+            var prevTasks=[];
+            if(allTasks.tasks) prevTasks=allTasks.tasks;
+            var newTask = $('#newTask').val();
+            if(newTask){
+                prevTasks.push(newTask);
+            }
+            console.log(allTasks.tasks);
+            chrome.storage.sync.set({'tasks':prevTasks});
+            $('#task').text(newTask);
+        });
+    });
+
+    $('#reset').click(function(){
+        chrome.storage.sync.set({'tasks':[]});
+        $('#task').text('');
+        $('#newTask').val('');
+    });
+});
+
+/*
+$(function(){
     chrome.storage.sync.get(['tot','maxBudget'], function(budget) {
         $('#total').text(budget.tot);
         $('#limit').text(budget.maxBudget);
@@ -44,3 +67,4 @@ $(function(){
         });
     });
 }); 
+*/
