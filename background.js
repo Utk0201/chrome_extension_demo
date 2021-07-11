@@ -6,7 +6,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     //   sendResponse(user);
     // }
     if(message.from==="popup"){
-        console.log("received popup msg");
-        chrome.tabs.create({url: "https://www.stackoverflow.com", active: false }, tab =>{}); 
+        // console.log("received popup msg");
+        // chrome.tabs.create({url: "https://www.stackoverflow.com", active: false }, tab =>{}); 
+        chrome.tabs.create({
+            url: 'customPage/myPage.html'
+          });
     }
 });
