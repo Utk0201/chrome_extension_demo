@@ -7,12 +7,24 @@
     <title>Document</title>
     <link href="/customPage/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <link rel="stylesheet" href="./myPage.css">
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="./myPage.js"></script>
 </head>
 <body>
     <div class="container">
-        <i class="fas fa-list-alt"></i>
+        <i id="toggleForm" class="fas fa-list-alt"></i>
         <h1>Productivity management app</h1>
         <i class="fas fa-cog"></i>
+    </div>
+    <div class="userForms">
+        <form id="taskForm">
+            <h2>Tasks</h2>
+            <label for="addTask"></label><input id="addTask" type="text">
+            <i class="fas fa-thumbtack"></i>
+            <div class="onGoingTasks">
+                <!-- New tasks  will be added here -->
+            </div>
+        </form>
     </div>
 </body>
 </html>

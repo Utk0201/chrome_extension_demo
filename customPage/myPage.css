@@ -46,3 +46,59 @@ i.fas.fa-cog:hover {
     transform: scale(1.2) rotate(45deg);
     opacity: 0.5;
 }
+
+.userForms {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+#addTask {
+    width: 25rem;
+    height: 2rem;
+    background: rgba(0,0,0,0.3);
+    border: none;
+    border-radius: 3rem;
+    font-size: 2rem;
+    font-family: monospace;
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+}
+
+#addTask:focus {
+    outline: none;
+}
+
+h2 {
+    font-weight: 900;
+    font-size: 3rem;
+    font-family: cursive;
+}
+
+form#taskForm {
+    width: fit-content;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    border-radius: 3rem;
+    padding: 0rem 4rem 4rem 4rem;
+    margin-top: 5rem;
+}
+
+::selection {
+    color: bisque;
+    background: none;
+}
+
+i.fas.fa-thumbtack {
+    font-size: 2rem;
+    margin: 0 0 0 1rem;
+    color: lightgrey;
+    transform: rotate(45deg);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+i.fas.fa-thumbtack:hover {
+    opacity: 0.5;
+}
