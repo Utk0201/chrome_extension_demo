@@ -18,9 +18,7 @@
     "permissions":[
         "storage",
         "notifications",
-        "contextMenus"
-    ],
-    "chrome_url_overrides":{
-        "newtab":"customPage/myPage.html"
-    }
+        "contextMenus",
+        "tabs"
+    ]
 }
