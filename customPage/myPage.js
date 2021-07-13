@@ -26,7 +26,7 @@ function addTodo(e) {
     newTodo.innerText = todoInput.value;
     //Save to local - do this last
     //Save to local
-    saveLocalTodos(todoInput.value);
+    if(!saveLocalTodos(todoInput.value)) return;
     //
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
@@ -59,8 +59,26 @@ function saveLocalTodos(todo) {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
+    // check whether this task has occurred before
+    for(var task of todos){
+        if(task.taskName===todo){
+            const tmp = document.getElementsByTagName('h2')[0];
+            $('.form-heading').fadeToggle("fast", function () {
+                tmp.innerHTML='<h2> Please add a different task</h2>';
+            });
+            $('.form-heading').fadeToggle("fast", function () {
+            });
+            $('.form-heading').fadeToggle(2000, function () {
+                tmp.innerHTML='<h2>Tasks</h2>';
+            });
+            $('.form-heading').fadeToggle("fast", function () {});;
+            console.log("Sorry!! this task has been inserted before!!!");
+            return false;
+        }
+    }
     todos.push({taskName:todo,taskDone:0});
     localStorage.setItem("todos", JSON.stringify(todos));
+    return true;
 }
 
 function deleteTodo(e) {
