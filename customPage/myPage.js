@@ -1,11 +1,11 @@
-$(function(){
-    $('h1').click(function(){
-        console.log("I am clicked!!!");
+$(function () {
+    $('h1').click(function () {
+        // console.log("I am clicked!!!");
     });
     $('.todo-forms').hide();
-    $('#toggle-form').click(function(){
-        console.log("I am also clicked!!!");
-        $('.todo-forms').slideToggle( "slow", function() {});
+    $('#toggle-form').click(function () {
+        // console.log("I am also clicked!!!");
+        $('.todo-forms').slideToggle("slow", function () { });
     });
 });
 
@@ -51,41 +51,39 @@ function addTodo(e) {
     todoDiv.appendChild(btns);
     //attach final Todo
     todoList.appendChild(todoDiv);
-  }
+}
 
-  function saveLocalTodos(todo) {
+function saveLocalTodos(todo) {
     let todos;
     if (localStorage.getItem("todos") === null) {
-      todos = [];
+        todos = [];
     } else {
-      todos = JSON.parse(localStorage.getItem("todos"));
+        todos = JSON.parse(localStorage.getItem("todos"));
     }
     todos.push(todo);
     localStorage.setItem("todos", JSON.stringify(todos));
-  }
+}
 
-  function deleteTodo(e) {
+function deleteTodo(e) {
     const item = e.target;
-    console.log("Item to be deleted: ",item);
-    // for(var classes of item.classList){
-    //     console.log(classes);
-    // }
     if (item.classList[1] === "fa-trash") {
-        const toBeDeleted=e.target.parentElement.parentElement.parentElement;
-        console.log(toBeDeleted);
-      toBeDeleted.remove();
-    //   const todo = item.parentElement;
-    //   todo.classList.add("fall");
-      //at the end
-    //   removeLocalTodos(todo);
-    //   todo.addEventListener("transitionend", e => {
-    //     todo.remove();
-    //   });
+        const toBeDeleted = e.target.parentElement.parentElement.parentElement;
+        // console.log(toBeDeleted);
+        removeLocalTodos(toBeDeleted);
+        toBeDeleted.remove();
     }
-    // if (item.classList[0] === "complete-btn") {
-    //   const todo = item.parentElement;
-    //   todo.classList.toggle("completed");
-    //   console.log(todo);
-    // }
+}
 
-  }
+function removeLocalTodos(todo) {
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    // console.log("The children[0] is: ", todo.children[0]);
+    // console.log("The inner text is: ", todo.children[0].innerText);
+    const todoIndex = todo.children[0].innerText;
+    todos.splice(todos.indexOf(todoIndex), 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
