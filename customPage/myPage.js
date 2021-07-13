@@ -14,7 +14,7 @@ const todoInput = document.querySelector("#add-task");
 const todoList = document.querySelector(".todo-list");
 
 todoButton.addEventListener("click", addTodo);
-// todoList.addEventListener("click", deleteTodo);
+todoList.addEventListener("click", deleteTodo);
 
 function addTodo(e) {
     //Prevent natural behaviour
@@ -64,3 +64,28 @@ function addTodo(e) {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
 
+  function deleteTodo(e) {
+    const item = e.target;
+    console.log("Item to be deleted: ",item);
+    // for(var classes of item.classList){
+    //     console.log(classes);
+    // }
+    if (item.classList[1] === "fa-trash") {
+        const toBeDeleted=e.target.parentElement.parentElement.parentElement;
+        console.log(toBeDeleted);
+      toBeDeleted.remove();
+    //   const todo = item.parentElement;
+    //   todo.classList.add("fall");
+      //at the end
+    //   removeLocalTodos(todo);
+    //   todo.addEventListener("transitionend", e => {
+    //     todo.remove();
+    //   });
+    }
+    // if (item.classList[0] === "complete-btn") {
+    //   const todo = item.parentElement;
+    //   todo.classList.toggle("completed");
+    //   console.log(todo);
+    // }
+
+  }
