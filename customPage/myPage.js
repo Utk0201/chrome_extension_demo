@@ -9,6 +9,7 @@ $(function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", getTodos);
 const todoButton = document.querySelector(".todo-button");
 const todoInput = document.querySelector("#add-task");
 const todoList = document.querySelector(".todo-list");
@@ -68,7 +69,6 @@ function deleteTodo(e) {
     const item = e.target;
     if (item.classList[1] === "fa-trash") {
         const toBeDeleted = e.target.parentElement.parentElement.parentElement;
-        console.log("toBeDeleted: ",toBeDeleted);
         removeLocalTodos(toBeDeleted);
         toBeDeleted.remove();
     }
@@ -81,9 +81,46 @@ function removeLocalTodos(todo) {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
-    console.log("The children[0] is: ", todo.children[0]);
-    console.log("The inner text is: ", todo.children[0].innerText);
     const todoIndex = todo.children[0].innerText;
     todos.splice(todos.indexOf(todoIndex), 1);
     localStorage.setItem("todos", JSON.stringify(todos));
 }
+
+function getTodos() {
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+      todos = [];
+    } else {
+      todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    todos.forEach(function (todo) {
+          //Create todo div
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("a-task");
+    //Create list
+    const newTodo = document.createElement("li");
+    newTodo.innerText = todo;
+    newTodo.classList.add("todo-item");
+    todoDiv.appendChild(newTodo);
+    todoInput.value = "";
+    //Create Completed Button
+    const completedButton = document.createElement("button");
+    completedButton.innerHTML = `<i class="fas fa-check"></i>`;
+    completedButton.classList.add("complete-btn");
+    // todoDiv.appendChild(completedButton);
+    //Create trash button
+    const trashButton = document.createElement("button");
+    trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
+    trashButton.classList.add("trash-btn");
+    // my lines
+    const btns = document.createElement("div");
+    btns.classList.add("edit-delete-buttons");
+    btns.appendChild(completedButton);
+    btns.appendChild(trashButton);
+    // my lines
+    // todoDiv.appendChild(trashButton);
+    todoDiv.appendChild(btns);
+    //attach final Todo
+    todoList.appendChild(todoDiv);
+    });
+  }
