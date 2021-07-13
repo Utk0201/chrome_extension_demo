@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/customPage/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
+    <link href="/customPage/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
+    <!--load all styles -->
     <link rel="stylesheet" href="./myPage.css">
     <script src="../jquery-3.6.0.min.js"></script>
-    <script src="./myPage.js"></script>
 </head>
+
 <body>
     <div class="container">
-        <i id="toggleForm" class="fas fa-list-alt"></i>
+        <i id="toggle-form" class="fas fa-list-alt"></i>
         <h1>Productivity management app</h1>
         <i class="fas fa-cog"></i>
     </div>
-    <div class="userForms">
-        <form id="taskForm">
+    <div class="todo-forms">
+        <form id="task-form">
             <h2>Tasks</h2>
-            <label for="addTask"></label><input id="addTask" type="text">
-            <i class="fas fa-thumbtack"></i>
-            <div class="onGoingTasks">
-                <!-- New tasks  will be added here -->
-            </div>
+            <label for="add-task"></label><input id="add-task" type="text">
+            <button class="todo-button" type="submit">
+                <i class="fas fa-thumbtack"></i>
+            </button>
         </form>
+        <div class="todo-container">
+            <ul class="todo-list"></ul>
+        </div>            
     </div>
+    <script src="./myPage.js"></script>
 </body>
+
 </html>

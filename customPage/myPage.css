@@ -18,7 +18,7 @@ h1 {
 }
 
 html {
-    height: 100%;
+    height: 200%;
 }
 
 i.fas.fa-list-alt {
@@ -47,14 +47,15 @@ i.fas.fa-cog:hover {
     opacity: 0.5;
 }
 
-.userForms {
+.todo-forms {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
+    align-items: center;
 }
 
-#addTask {
+#add-task {
     width: 25rem;
     height: 2rem;
     background: rgba(0,0,0,0.3);
@@ -67,7 +68,7 @@ i.fas.fa-cog:hover {
     color: white;
 }
 
-#addTask:focus {
+#add-task:focus {
     outline: none;
 }
 
@@ -77,8 +78,8 @@ h2 {
     font-family: cursive;
 }
 
-form#taskForm {
-    width: fit-content;
+form#task-form {
+    width: 35rem;
     background: rgba(0,0,0,0.2);
     border: none;
     border-radius: 3rem;
@@ -101,4 +102,65 @@ i.fas.fa-thumbtack {
 
 i.fas.fa-thumbtack:hover {
     opacity: 0.5;
+}
+
+ul.todo-item {
+    font-size: 2rem;
+    text-align: initial;
+    margin-top: 1rem;
+    padding: 0 0 0 1.5rem;
+}
+
+.todo-list {
+    width: 40rem;
+    display: flex;
+    background: linear-gradient(45deg, rgba(0,0,0,0.6), transparent);
+    border-radius: 3rem;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.a-task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.todo-item {
+    list-style-type: none;
+    font-size: 2rem;
+    align-self: center;
+    font-family: monospace;
+}
+
+.complete-btn {
+    background: none;
+    border-radius: 1rem;
+    border-top: none;
+    margin: 0 0 0 1rem;
+    transform: scale3d(1.5, 1.5, 1.5);
+}
+
+.trash-btn{
+    background: none;
+    border-radius: 1rem;
+    border-top: none;
+    margin: 0 0 0 1rem;
+    transform: scale3d(1.5, 1.5, 1.5);
+}
+
+.edit-delete-buttons {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    width: 6rem;
+    justify-content: space-evenly;
+}
+
+.todo-button {
+    background: none;
+    border-radius: 1rem;
+    border-top: none;
+    margin: 0 0 0 1rem;
 }
