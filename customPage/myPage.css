@@ -88,7 +88,7 @@ form#task-form {
 }
 
 ::selection {
-    color: bisque;
+    color: deepskyblue;
     background: none;
 }
 
@@ -161,4 +161,26 @@ ul.todo-item {
     border-radius: 1rem;
     border-top: none;
     margin: 0 0 0 1rem;
+}
+
+.task-done{
+    color: red;
+}
+
+i.fas.fa-trash {
+    color: ghostwhite;
+    transform: scale(1.5);
+}
+i.fas.fa-trash:hover {
+    color: red;
+    transform: scale(1.5);
+}
+
+i.fas.fa-check {
+    color: ghostwhite;
+    transform: scale(1.5);
+}
+i.fas.fa-check:hover {
+    color: greenyellow;
+    transform: scale(1.5);
 }
