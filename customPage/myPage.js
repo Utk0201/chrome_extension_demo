@@ -55,11 +55,11 @@ function addTodo(e) {
 function saveLocalTodos(todo) {
     let todos;
     if (localStorage.getItem("todos") === null) {
-        todos = [];
+        todos = [{}];
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
-    todos.push(todo);
+    todos.push({taskName:todo,taskDone:0});
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
@@ -73,8 +73,29 @@ function deleteTodo(e) {
     if (item.classList[1] === "fa-check") {
         const todo = item.parentElement.parentElement.parentElement;
         let toStrike = todo.children[0];
+        modifyTask(todo);
         toStrike.classList.toggle("task-done");
     }
+}
+
+function modifyTask(todo){
+    //
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    console.log(todo);
+    console.log(todo.innerText);
+    for(let task of todos){
+        console.log(task);
+        if(task.taskName===todo.innerText){
+            console.log("Yayyy!!!");
+            task.taskDone=1-task.taskDone;
+        }
+    }
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function removeLocalTodos(todo) {
@@ -102,7 +123,7 @@ function getTodos() {
         todoDiv.classList.add("a-task");
         //Create list
         const newTodo = document.createElement("li");
-        newTodo.innerText = todo;
+        newTodo.innerText = todo.taskName;
         newTodo.classList.add("todo-item");
         todoDiv.appendChild(newTodo);
         todoInput.value = "";
@@ -110,6 +131,9 @@ function getTodos() {
         const completedButton = document.createElement("button");
         completedButton.innerHTML = `<i class="fas fa-check"></i>`;
         completedButton.classList.add("complete-btn");
+        if(todo.taskDone===1){
+            newTodo.classList.add("task-done");
+        }
         // todoDiv.appendChild(completedButton);
         //Create trash button
         const trashButton = document.createElement("button");
