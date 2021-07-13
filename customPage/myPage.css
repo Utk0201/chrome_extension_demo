@@ -136,16 +136,14 @@ ul.todo-item {
 
 .complete-btn {
     background: none;
-    border-radius: 1rem;
-    border-top: none;
+    border: none;
     margin: 0 0 0 1rem;
     transform: scale3d(1.5, 1.5, 1.5);
 }
 
-.trash-btn{
+.trash-btn {
     background: none;
-    border-radius: 1rem;
-    border-top: none;
+    border: none;
     margin: 0 0 0 1rem;
     transform: scale3d(1.5, 1.5, 1.5);
 }
