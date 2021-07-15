@@ -22,12 +22,16 @@ $(function () {
     var goToWorkBtn = document.querySelector('.go-to-work');
     var workTime = document.querySelector('#work-time');
     var breakTime = document.querySelector('#break-time');
+    var myState=-1;
+    var workPaused=0;
+    var breakPaused=0;
 
-    var workMin=-1,breakMin=-1;
+    var workSec=-1,breakSec=-1;
 
     resetWindow();
 
     function resetWindow() {
+        myState=-1;
         // by default , work and break windows are hidden
         workWindow.hide("slow");
         breakWindow.hide("slow");
@@ -40,16 +44,19 @@ $(function () {
             //     console.log("Please enter a value");
             //     return;
             // }
-            workMin=workInput.value;
-            breakMin=breakInput.value;
-            console.log("Work minutes: ",workMin);
-            console.log("Break minutes: ",breakMin);
+            workSec=workInput.value*60;
+            breakSec=breakInput.value*60;
+            // console.log("Work minutes: ",workSec);
+            // console.log("Break minutes: ",breakSec);
             doWork();
         });
     }
 
     function doWork(workDuration) {
-        workTime.innerText=workMin;
+        myState=1;
+        workPaused=0;
+        setInterval(updateWork,1000);
+        workTime.innerText=workSec;
         console.log("Doing work");
         breakWindow.hide("slow");
         timerWindow.hide("slow");
@@ -58,6 +65,13 @@ $(function () {
         resetAll.addEventListener("click", resetWindow);
         pauseWorkBtn.addEventListener("click", (e) => {
             e.preventDefault();
+            workPaused=1-workPaused;
+            if(workPaused===1){
+                pauseWorkBtn.innerText="Resume";
+            }
+            else{
+                pauseWorkBtn.innerText="Pause";
+            }
             console.log("Pausing work");
         });
         takeBreakBtn.addEventListener("click", (e)=>{
@@ -72,7 +86,10 @@ $(function () {
     }
 
     function takeBreak() {
-        breakTime.innerText=breakMin;
+        myState=0;
+        breakPaused=0;
+        setInterval(updateBreak,1000);
+        breakTime.innerText=breakSec;
         workWindow.hide("slow");
         timerWindow.hide("slow");
         breakWindow.show("slow");
@@ -80,7 +97,14 @@ $(function () {
         //  buttons
         resetAll.addEventListener("click", resetWindow);
         pauseBreakBtn.addEventListener("click",(e)=>{
+            breakPaused=1-breakPaused;
             e.preventDefault();
+            if(breakPaused===1){
+                pauseBreakBtn.innerText="Resume";
+            }
+            else{
+                pauseBreakBtn.innerText="Pause";
+            }
             console.log("Pausing break");
         })
         goToWorkBtn.addEventListener("click", (e) => {
@@ -90,5 +114,18 @@ $(function () {
         //////////////////////////////////////////
         bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://image.freepik.com/free-photo/take-break-text-cubes-white-background-time-relax-stop-work_274234-834.jpg')";
         bodyContent.style.backgroundSize = "cover";
+    }
+
+    function updateWork(){
+        if(myState===1 && workPaused!=1){
+            workTime.innerHTML=`${Math.floor(workSec/60)}:${workSec%60}`;
+            workSec--;
+        }
+    }
+    function updateBreak(){
+        if(myState===0 && breakPaused!=1){
+            breakTime.innerHTML=`${Math.floor(breakSec/60)}:${breakSec%60}`;
+            breakSec--;
+        }
     }
 });
