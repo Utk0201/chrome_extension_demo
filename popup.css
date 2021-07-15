@@ -1,32 +1,68 @@
-.contents{
+body {
+    background-image: linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://media.istockphoto.com/photos/hourglass-on-white-background-sandglass-picture-id1180957698?k=6&m=1180957698&s=612x612&w=0&h=p-YGrRMpXzU0owQRD0ga6unqd-IxK_6cDGXc8s-dfcw=');
+    background-size: cover;
+}
+#home {
+    margin: 1rem 0 0 1rem;
+    background: none;
+    border: none;
+    transition: all 0.5s ease-in-out 0s;
+    transform: scale(1.5);
+    color: dimgray;
+}
+button#home:hover {
+    transform: scale(2);
+    color: lightgray;
+}
+
+.set-time {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 12rem;
+    justify-content: space-evenly;
+    padding: 0 2rem 0 2rem;
 }
-h1 {
+
+.set-work-break {
+    align-self: center;
+    background: orangered;
+    border-radius: 50%;
+    height: 2rem;
+    font-weight: 900;
+    color: white;
+    border: none;
+    transition: all 0.5s ease-in-out 0s;
+}
+button.set-work-break:hover {
+    transform: scale(1.2);
+    color: lightgrey;
+}
+h2 {
+    align-self: center;
+    font-family: cursive;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.work-time {
+    width: 10rem;
+    align-self: center;
+}
+
+.break-time {
+    width: 10rem;
+    align-self: center;
+}
+
+input {
+    border: none;
+    outline: none;
+    background: lightyellow;
+    height: 2em;
+    border-radius: 2rem;
     text-align: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0;
 }
 
-.form-items{
-    display: flex;
-    flex-direction: column;
-    height: 5rem;
-    justify-content: space-around;
-}
-
-#doTask{
-    font-family: cursive;
-    font-weight: 600;
-}
-
-#doTask:hover{
-    background-color: greenyellow;
-}
-    
-#reset{
-    font-family: cursive;
-    font-weight: 600;
-}
-#reset:hover{
-    background-color: red;    
-}
