@@ -17,7 +17,9 @@ $(function () {
     var bodyContent = document.querySelector("body");
     const setTimings = document.querySelector(".set-work-break");
     const pauseWorkBtn = document.querySelector('.work-pause');
+    const pauseBreakBtn = document.querySelector('.break-pause');
     const takeBreakBtn = document.querySelector('.take-break');
+    const goToWorkBtn = document.querySelector('.go-to-work');
 
     resetWindow();
 
@@ -39,7 +41,9 @@ $(function () {
     }
 
     function doWork(workDuration) {
-        timerWindow.slideUp("slow");
+        console.log("Doing work");
+        breakWindow.hide("slow");
+        timerWindow.hide("slow");
         workWindow.show("slow");
         // buttons
         resetAll.addEventListener("click", resetWindow);
@@ -49,15 +53,27 @@ $(function () {
         });
         takeBreakBtn.addEventListener("click", takeBreak);
         //////////////////////////////////////////
-        console.log("Shifted to work mode for ", workDuration);
-        console.log(bodyContent.style);
+        if(workDuration!=-1) console.log("Shifted to work mode for ", workDuration);
+        else console.log("Resuming work from __");
         bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://i.pinimg.com/564x/63/00/a7/6300a74eae90be4938bb39257e3fe6d9.jpg')";
     }
 
     function takeBreak(e) {
         e.preventDefault();
-        // workWindow.hide("slow");
-        // timerWindow.show("slow");
-        console.log("Taking a break!!");
+        workWindow.hide("slow");
+        timerWindow.hide("slow");
+        breakWindow.show("slow");
+        // console.log("Taking a break!!");
+        //  buttons
+        resetAll.addEventListener("click", resetWindow);
+        goToWorkBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("Pausing break");
+        });
+        goToWorkBtn.addEventListener("click",()=>{
+            doWork(-1);
+        });
+        //////////////////////////////////////////
+        bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://image.freepik.com/free-photo/take-break-text-cubes-white-background-time-relax-stop-work_274234-834.jpg')";
     }
 });
