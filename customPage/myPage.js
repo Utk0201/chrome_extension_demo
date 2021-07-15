@@ -55,7 +55,7 @@ function addTodo(e) {
 function saveLocalTodos(todo) {
     let todos;
     if (localStorage.getItem("todos") === null) {
-        todos = [{}];
+        todos = [];
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
@@ -123,9 +123,18 @@ function removeLocalTodos(todo) {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
-    const todoIndex = todo.children[0].innerText;
-    todos.splice(todos.indexOf(todoIndex), 1);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    // const todoIndex = todo.children[0].innerText;
+    // todos.splice(todos.indexOf(todoIndex), 1);
+    // console.log(todo);
+    // console.log(todos);
+    // return;
+    let newTodos=[];
+    for(let aTask of todos){
+        if(aTask.taskName!=todo.children[0].innerText){
+            newTodos.push(aTask);
+        }
+    }
+    localStorage.setItem("todos", JSON.stringify(newTodos));
 }
 
 function getTodos() {
