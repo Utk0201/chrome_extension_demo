@@ -69,8 +69,6 @@ $(function () {
         goToWorkBtn.addEventListener("click", (e) => {
             e.preventDefault();
             console.log("Pausing break");
-        });
-        goToWorkBtn.addEventListener("click",()=>{
             doWork(-1);
         });
         //////////////////////////////////////////
