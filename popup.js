@@ -13,13 +13,17 @@ $(function () {
     var breakWindow = $(".break-window");
     var workInput = document.querySelector(".work-time");
     var breakInput = document.querySelector(".break-time");
-    const resetAll = document.querySelector('.all-reset');
+    var resetAll = document.querySelector('.all-reset');
     var bodyContent = document.querySelector("body");
-    const setTimings = document.querySelector(".set-work-break");
-    const pauseWorkBtn = document.querySelector('.work-pause');
-    const pauseBreakBtn = document.querySelector('.break-pause');
-    const takeBreakBtn = document.querySelector('.take-break');
-    const goToWorkBtn = document.querySelector('.go-to-work');
+    var setTimings = document.querySelector(".set-work-break");
+    var pauseWorkBtn = document.querySelector('.work-pause');
+    var pauseBreakBtn = document.querySelector('.break-pause');
+    var takeBreakBtn = document.querySelector('.take-break');
+    var goToWorkBtn = document.querySelector('.go-to-work');
+    var workTime = document.querySelector('#work-time');
+    var breakTime = document.querySelector('#break-time');
+
+    var workMin=-1,breakMin=-1;
 
     resetWindow();
 
@@ -36,11 +40,16 @@ $(function () {
             //     console.log("Please enter a value");
             //     return;
             // }
-            doWork(workInput.value);
+            workMin=workInput.value;
+            breakMin=breakInput.value;
+            console.log("Work minutes: ",workMin);
+            console.log("Break minutes: ",breakMin);
+            doWork();
         });
     }
 
     function doWork(workDuration) {
+        workTime.innerText=workMin;
         console.log("Doing work");
         breakWindow.hide("slow");
         timerWindow.hide("slow");
@@ -56,10 +65,12 @@ $(function () {
         if(workDuration!=-1) console.log("Shifted to work mode for ", workDuration);
         else console.log("Resuming work from __");
         bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://i.pinimg.com/564x/63/00/a7/6300a74eae90be4938bb39257e3fe6d9.jpg')";
+        bodyContent.style.backgroundSize = "cover";
     }
 
     function takeBreak(e) {
         e.preventDefault();
+        breakTime.innerText=breakMin;
         workWindow.hide("slow");
         timerWindow.hide("slow");
         breakWindow.show("slow");
@@ -73,5 +84,6 @@ $(function () {
         });
         //////////////////////////////////////////
         bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://image.freepik.com/free-photo/take-break-text-cubes-white-background-time-relax-stop-work_274234-834.jpg')";
+        bodyContent.style.backgroundSize = "cover";
     }
 });
