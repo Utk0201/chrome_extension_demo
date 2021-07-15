@@ -60,7 +60,10 @@ $(function () {
             e.preventDefault();
             console.log("Pausing work");
         });
-        takeBreakBtn.addEventListener("click", takeBreak);
+        takeBreakBtn.addEventListener("click", (e)=>{
+            e.preventDefault();
+            takeBreak();
+        });
         //////////////////////////////////////////
         if(workDuration!=-1) console.log("Shifted to work mode for ", workDuration);
         else console.log("Resuming work from __");
@@ -68,8 +71,7 @@ $(function () {
         bodyContent.style.backgroundSize = "cover";
     }
 
-    function takeBreak(e) {
-        e.preventDefault();
+    function takeBreak() {
         breakTime.innerText=breakMin;
         workWindow.hide("slow");
         timerWindow.hide("slow");
@@ -77,9 +79,12 @@ $(function () {
         // console.log("Taking a break!!");
         //  buttons
         resetAll.addEventListener("click", resetWindow);
-        goToWorkBtn.addEventListener("click", (e) => {
+        pauseBreakBtn.addEventListener("click",(e)=>{
             e.preventDefault();
             console.log("Pausing break");
+        })
+        goToWorkBtn.addEventListener("click", (e) => {
+            e.preventDefault();
             doWork(-1);
         });
         //////////////////////////////////////////
