@@ -18,8 +18,13 @@ h1 {
 }
 
 html {
-    height: 200%;
+    height: 300%;
 }
+.foot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
 i.fas.fa-list-alt {
     font-size: 4rem;
@@ -46,6 +51,19 @@ i.fas.fa-cog:hover {
     transform: scale(1.2) rotate(45deg);
     opacity: 0.5;
 }
+
+i.fas.fa-clock {
+    font-size: 4rem;
+    margin: 2rem;
+    transition: all 0s ease-in-out 0s;
+  }
+  
+  
+  i.fas.fa-clock:hover {
+    transform: scale(1.2) translate(0.5rem, 0.5rem);
+    opacity:0.5;
+  }
+  
 
 .todo-forms {
     display: flex;
@@ -86,6 +104,90 @@ form#task-form {
     padding: 0rem 4rem 4rem 4rem;
     margin-top: 5rem;
 }
+/*block*/
+
+
+.userForms1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#textarea {
+    width: 25rem;
+    height: 20rem;
+    background: rgba(0,0,0,0.3);
+    border: none;
+    border-radius: 3rem;
+    font-size: 2rem;
+    font-family: monospace;
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+    padding: 2rem;
+}
+
+#textarea:focus {
+    outline: none;
+}
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  width: 3rem;
+  border: none;
+  background: white;
+  border-radius: 3rem;
+  font-size: 1rem;
+  font-family: monospace;
+  text-align: center;
+  font-weight: bolder;
+}
+form button {
+  color: white;
+  background: rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0s ease;
+}
+form button:hover {
+  background: white;
+  color: black;
+}
+
+#enable{
+  width: 7rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: white;
+  border-radius: 3rem;
+  font-size: 1rem;
+  font-family: monospace;
+  font-weight: bolder;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+}
+
+#controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+    margin: 1rem 0 2rem 0;
+}
+
+/*block*/
 
 ::selection {
     color: deepskyblue;
@@ -162,6 +264,9 @@ ul.todo-item {
     border-top: none;
     margin: 0 0 0 1rem;
 }
+.todo-button:hover {
+    background: none;
+}
 
 .task-done{
     color: red;
@@ -186,4 +291,21 @@ i.fas.fa-check:hover {
 }
 
 .form-heading{
+}
+
+button#save {
+    height: 3rem;
+    width: 5rem;
+}
+
+#enable {
+    height: 2rem;
+    width: 10rem;
+}
+
+.alarm-set-reset-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
