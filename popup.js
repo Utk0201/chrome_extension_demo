@@ -14,6 +14,7 @@ $(function () {
     var workInput = document.querySelector(".set-work-time");
     var breakInput = document.querySelector(".set-break-time");
     var resetAll = document.querySelector('.all-reset');
+    var resetAll2 = document.querySelector('.all-reset-two');
     var bodyContent = document.querySelector("body");
     var setTimings = document.querySelector(".set-work-break");
     var pauseWorkBtn = document.querySelector('.work-pause');
@@ -64,6 +65,16 @@ $(function () {
         e.preventDefault();
         clearInterval(clearBreak);
         doWork();
+    });
+
+    resetAll.addEventListener("click", ()=>{
+        workSec=-1;
+        breakSec=-1;
+        chrome.storage.sync.set({ "workTimeLeft": -1 },()=>{
+            chrome.storage.sync.set({ "breakTimeLeft": -1 },()=>{
+                return resetWindow();
+            });
+        });           
     });
 
     resetWindow();
@@ -140,12 +151,6 @@ chrome.storage.sync.get(['key'], function(result) {
         breakWindow.hide("slow");
         timerWindow.hide("slow");
         workWindow.show("slow");
-        // buttons
-        resetAll.addEventListener("click", ()=>{
-            chrome.storage.sync.set({ "workTimeLeft": -1 });
-            chrome.storage.sync.set({ "breakTimeLeft": -1 });            
-            resetWindow();
-        });
         //////////////////////////////////////////
         bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://i.pinimg.com/564x/63/00/a7/6300a74eae90be4938bb39257e3fe6d9.jpg')";
         bodyContent.style.backgroundSize = "cover";
@@ -161,7 +166,15 @@ chrome.storage.sync.get(['key'], function(result) {
         timerWindow.hide("slow");
         breakWindow.show("slow");
         //  buttons
-        resetAll.addEventListener("click", resetWindow);
+        resetAll2.addEventListener("click", ()=>{
+            workSec=-1;
+            breakSec=-1;
+            chrome.storage.sync.set({ "workTimeLeft": -1 },()=>{
+                chrome.storage.sync.set({ "breakTimeLeft": -1 },()=>{
+                    return resetWindow();
+                });
+            });           
+        });
         //////////////////////////////////////////
         bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://image.freepik.com/free-photo/take-break-text-cubes-white-background-time-relax-stop-work_274234-834.jpg')";
         bodyContent.style.backgroundSize = "cover";
