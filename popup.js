@@ -4,7 +4,7 @@ $(function () {
         chrome.runtime.sendMessage({
             from: "popup",
             action: "goToHomePage"
-        })
+        });
     });
 
 
@@ -69,6 +69,16 @@ $(function () {
     resetWindow();
 
     function resetWindow() {
+        if(localStorage.getItem("workTimeLeft")>0){
+            clearInterval(clearBreak);
+            doWork();
+        }
+        if(localStorage.getItem("breakTimeLeft")>0){
+            clearInterval(clearWork);
+            takeBreak();
+        }
+        localStorage.setItem("workTimeLeft", -1);
+        localStorage.setItem("breakTimeLeft", -1);
         myState=-1;
         // by default , work and break windows are hidden
         workWindow.hide("slow");
@@ -123,6 +133,7 @@ $(function () {
         if(myState===1 && workPaused!==1 && workSec>0){
             showWorkTime.innerHTML=`${Math.floor(workSec/60)}:${workSec%60}`;
             workSec--;
+            localStorage.setItem("workTimeLeft", workSec);
         }
     }
     function updateBreak(){
@@ -130,6 +141,11 @@ $(function () {
         if(myState===0 && breakPaused!==1 && breakSec>0){
             showBreakTime.innerHTML=`${Math.floor(breakSec/60)}:${breakSec%60}`;
             breakSec--;
+            localStorage.setItem("breakTimeLeft", breakSec);
         }
     }
+    /*
+    todos = JSON.parse(localStorage.getItem("todos"));
+    localStorage.setItem("todos", JSON.stringify(todos));
+    */
 });
