@@ -102,7 +102,7 @@ $(function () {
         clearWork = setInterval(updateWork,1000);
         myState=1;
         workPaused=0;
-        showWorkTime.innerText=workSec;         //  to be changed
+        showWorkTime.innerText=`${workSec/60}:${workSec%60}`;        
         breakWindow.hide("slow");
         timerWindow.hide("slow");
         workWindow.show("slow");
@@ -118,7 +118,7 @@ $(function () {
         console.log("Taking break!!");
         myState=0;
         breakPaused=0;
-        showBreakTime.innerText=breakSec;       //  to be changed
+        showBreakTime.innerText=`${breakSec/60}:${breakSec%60}`;       //  to be changed
         workWindow.hide("slow");
         timerWindow.hide("slow");
         breakWindow.show("slow");
