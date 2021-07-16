@@ -104,3 +104,8 @@ i.fas.fa-home {
     top: 0;
     left: 3rem;
 }
+
+::selection {
+    color: deepskyblue;
+    background: none;
+}
