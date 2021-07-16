@@ -144,6 +144,7 @@ chrome.storage.sync.get(['key'], function(result) {
     }
 
     function doWork() {
+        pauseWorkBtn.innerText = "Pause";
         clearWork = setInterval(updateWork, 1000);
         myState = 1;
         workPaused = 0;
@@ -157,6 +158,7 @@ chrome.storage.sync.get(['key'], function(result) {
     }
 
     function takeBreak() {
+        pauseBreakBtn.innerText = "Pause";
         clearBreak = setInterval(updateBreak, 1000);
         console.log("Taking break!!");
         myState = 0;
