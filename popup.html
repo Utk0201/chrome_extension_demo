@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="popup.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./customPage/fontawesome-free-5.15.3-web/css/fontawesome.css">
+    <link rel="stylesheet" href="./customPage/fontawesome-free-5.15.3-web/css/brands.css">
+    <link rel="stylesheet" href="./customPage/fontawesome-free-5.15.3-web/css/solid.css">
+    <link rel="stylesheet" href="popup.css">
+    <title>Budget manager</title>
+</head>
+
+<body>
+    <button type="submit" id="home"><i class="fas fa-home"></i></button>
+    <!-- Get work and break time input -->
+    <form class="set-time">
+        <h2>Set Time</h2>
+        <input class="set-work-time" type="number" placeholder="work duration (in min)">
+        <input class="set-break-time" type="number" placeholder="break duration (in min)">
+        <button class="set-work-break">OK</button>
+    </form>
+
+    <!-- Show work window -->
+    <div class="work-window">
+        <h1 id="show-work-time">On work!!!</h1>
+        <form class="work-timer-options">
+            <button class="all-reset">Reset</button>
+            <button class="work-pause">Pause</button>
+            <button class="take-break">Take a Break</button>
+        </form>
+    </div>
+
+    <!-- Show break window -->
+    <div class="break-window">
+        <h1 id="show-break-time">On break!!!</h1>
+        <form class="break-timer-options">
+            <button class="all-reset-two">Reset</button>
+            <button class="break-pause">Pause</button>
+            <button class="go-to-work">Go to Work</button>
+        </form>
+    </div>
+</body>
+
+</html>
