@@ -15,7 +15,7 @@ body {
     background: none;
     border: none;
     transition: all 0.5s ease-in-out 0s;
-    transform: scale(1.5);
+    transform: scale(4) translate(4rem,0);
     color: dimgray;
 }
 button#home:hover {
@@ -79,11 +79,11 @@ input {
     align-items: center;
 }
 
-.work-timer-options{
+.work-timer-options {
     display: flex;
     flex-direction: row;
-    width: 15rem;
-    justify-content: space-between;
+    width: 20rem;
+    justify-content: space-around;
 }
 
 .break-window{
@@ -108,4 +108,109 @@ i.fas.fa-home {
 ::selection {
     color: deepskyblue;
     background: none;
+}
+
+#show-work-time{
+    font-family: monospace;
+    font-size: 6rem;
+    color: black;
+}
+
+#show-break-time{
+    font-family: monospace;
+    font-size: 6rem;
+    color: black;
+}
+
+.all-reset{
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    width: 4rem;
+    font-weight: 700;
+    background: slategray;
+    color: floralwhite;
+    transition: all 0.5s ease-in-out 0s;
+}
+.all-reset:hover{
+    transform: scale(1.2) translate(0,-10px);
+    opacity:0.7;
+
+}
+
+.all-reset-two{
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    width: 4rem;
+    font-weight: 700;
+    background: slategray;
+    color: floralwhite;
+    transition: all 0.5s ease-in-out 0s;
+}
+.all-reset-two:hover{
+    transform: scale(1.2) translate(0,-10px);
+    opacity:0.7;
+
+}
+
+.work-pause{
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    width: 5rem;
+    font-weight: 700;
+    background: slategray;
+    color: floralwhite;
+    transition: all 0.5s ease-in-out 0s;
+}
+.work-pause:hover{
+    transform: scale(1.2) translate(0,-10px);
+    opacity:0.7;
+}
+
+.break-pause{
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    width: 5rem;
+    font-weight: 700;
+    background: slategray;
+    color: floralwhite;
+    transition: all 0.5s ease-in-out 0s;
+}
+.break-pause:hover{
+    transform: scale(1.2) translate(0,-10px);
+    opacity:0.7;
+}
+
+.take-break{
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    width: 4rem;
+    font-weight: 700;
+    background: slategray;
+    color: floralwhite;
+    transition: all 0.5s ease-in-out 0s;
+}
+.take-break:hover{
+    transform: scale(1.2) translate(0,-10px);
+    opacity:0.7;
+}
+
+.go-to-work{
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    width: 4rem;
+    font-weight: 700;
+    background: slategray;
+    color: floralwhite;
+    transition: all 0.5s ease-in-out 0s;
+}
+.go-to-work:hover{
+    transform: scale(1.2) translate(0,-10px);
+    opacity:0.7;
+    
 }

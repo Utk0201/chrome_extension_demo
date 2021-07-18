@@ -23,180 +23,187 @@ $(function () {
     var goToWorkBtn = document.querySelector('.go-to-work');
     var showWorkTime = document.querySelector('#show-work-time');
     var showBreakTime = document.querySelector('#show-break-time');
-    var myState = -1;
-    var workPaused = 0;
-    var breakPaused = 0;
-    var workSec = -1, breakSec = -1;
-    let clearWork;
-    let clearBreak;
+    var viewWorkInterval, viewBreakInterval;
+    var refreshRate=300;
+    var isBreakPaused=0,isWorkPaused=0;
 
-    pauseWorkBtn.addEventListener("click", (e) => {
+    clearInterval(viewWorkInterval);
+    clearInterval(viewBreakInterval);
+
+    pauseBreakBtn.addEventListener("click",(e)=>{
         e.preventDefault();
-        workPaused = 1 - workPaused;
-        if (workPaused === 1) {
+        isBreakPaused=1-isBreakPaused;
+        if(isBreakPaused===1){
+            pauseBreakBtn.innerText = "Resume";
+            pauseBreakBtn.style.background="darkgray";
+            showBreakTime.style.color="red";
+            chrome.runtime.sendMessage("paused", (response) => {
+                console.log(response);
+            });
+        }
+        else{
+            pauseBreakBtn.innerText = "Pause";
+            pauseBreakBtn.style.background="slategray";
+            showBreakTime.style.color="dimgray";
+            viewBreak();
+        }
+    });
+    pauseWorkBtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        isWorkPaused=1-isWorkPaused;
+        if(isWorkPaused===1){
             pauseWorkBtn.innerText = "Resume";
+            showWorkTime.style.color="red";
+            pauseWorkBtn.style.background="darkgray";
+            chrome.runtime.sendMessage("paused", (response) => {
+                console.log(response);
+            });
         }
-        else {
+        else{
             pauseWorkBtn.innerText = "Pause";
+            pauseWorkBtn.style.background="slategray";
+            showWorkTime.style.color="dimgray";
+            viewWork();
         }
-        console.log("Pausing work");
     });
 
+    resetAll.addEventListener("click", () => {
+        chrome.storage.sync.set({ "workTimeLeft": -1 });
+        chrome.storage.sync.set({ "breakTimeLeft": -1 });
+        setNewTimings();
+    })
+    resetAll2.addEventListener("click", () => {
+        chrome.storage.sync.set({ "workTimeLeft": -1 });
+        chrome.storage.sync.set({ "breakTimeLeft": -1 });
+        setNewTimings();
+    })
 
-    pauseBreakBtn.addEventListener("click", (e) => {
-        breakPaused = 1 - breakPaused;
+    goToWorkBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        if (breakPaused === 1) {
-            pauseBreakBtn.innerText = "Resume";
-        }
-        else {
-            pauseBreakBtn.innerText = "Pause";
-        }
-        console.log("Pausing break");
+        viewWork();
     });
 
     takeBreakBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        clearInterval(clearWork);
-        takeBreak();
+        viewBreak();
     });
 
-    goToWorkBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        clearInterval(clearBreak);
-        doWork();
-    });
-
-    resetAll.addEventListener("click", ()=>{
-        workSec=-1;
-        breakSec=-1;
-        chrome.storage.sync.set({ "workTimeLeft": -1 },()=>{
-            chrome.storage.sync.set({ "breakTimeLeft": -1 },()=>{
-                return resetWindow();
-            });
-        });           
-    });
-
-    resetWindow();
-
-    /*
-chrome.storage.sync.set({key: value}, function() {
-  console.log('Value is set to ' + value);
-});
-
-chrome.storage.sync.get(['key'], function(result) {
-  console.log('Value currently is ' + result.key);
-});
-    */
-
-    function resetWindow() {
-        // if (localStorage.getItem("workTimeLeft") > 0) {
-        //     clearInterval(clearBreak);
-        //     doWork();
-        // }
-        chrome.storage.sync.get("workTimeLeft", function (result1) {
-            console.log(result1.workTimeLeft, " work time left");
-            chrome.storage.sync.get("breakTimeLeft", function (result2) {
-                console.log(result2.breakTimeLeft, " break time left");
-                workSec = result1.workTimeLeft;
-                breakSec = result2.breakTimeLeft;
-                if (workSec > 0) {
-                    clearInterval(clearBreak);
-                    console.log("Calling doWork()");
-                    doWork();
-                    return;
+    chrome.storage.sync.get("workTimeLeft", (result1) => {
+        if (result1.workTimeLeft > 0) {
+            clearInterval(viewBreakInterval);
+            clearInterval(viewWorkInterval);
+            viewWork();
+        }
+        else {
+            chrome.storage.sync.get("breakTimeLeft", (result2) => {
+                if (result2.breakTimeLeft > 0) {
+                    clearInterval(viewBreakInterval);
+                    clearInterval(viewWorkInterval);
+                    viewBreak();
                 }
-                if (breakSec > 0) {
-                    clearInterval(clearWork);
-                    console.log("Calling takeBreak()");
-                    takeBreak();
-                    return;
+                else {
+                    // I must enter new timings
+                    setNewTimings();
                 }
-                // if (localStorage.getItem("breakTimeLeft") > 0) {
-                //     clearInterval(clearWork);
-                //     takeBreak();
-                // }
-                // localStorage.setItem("workTimeLeft", -1);
-                // localStorage.setItem("breakTimeLeft", -1);
-                chrome.storage.sync.set({ "workTimeLeft": -1 });
-                chrome.storage.sync.set({ "breakTimeLeft": -1 });
-                myState = -1;
-                // by default , work and break windows are hidden
-                workWindow.hide("slow");
-                breakWindow.hide("slow");
-                timerWindow.show("slow");
-                //  contents shown
-                setTimings.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    // to ensure the input is not blank
-                    // if(!workInput.value || !breakInput.value){
-                    //     console.log("Please enter a value");
-                    //     return;
-                    // }
-                    workSec = workInput.value * 60;
-                    breakSec = breakInput.value * 60;
-                    chrome.storage.sync.set({ "breakTimeLeft": breakSec });
-                    chrome.storage.sync.set({ "workTimeLeft": workSec });
-                    doWork();
-                });
             });
-        });
-    }
+        }
+    });
 
-    function doWork() {
-        pauseWorkBtn.innerText = "Pause";
-        clearWork = setInterval(updateWork, 1000);
-        myState = 1;
-        workPaused = 0;
-        showWorkTime.innerText = `${Math.floor(workSec / 60)}:${workSec % 60}`;
+    function setNewTimings() {
+        timerWindow.show("slow");
         breakWindow.hide("slow");
-        timerWindow.hide("slow");
-        workWindow.show("slow");
-        //////////////////////////////////////////
-        bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://i.pinimg.com/564x/63/00/a7/6300a74eae90be4938bb39257e3fe6d9.jpg')";
-        bodyContent.style.backgroundSize = "cover";
-    }
-
-    function takeBreak() {
-        pauseBreakBtn.innerText = "Pause";
-        clearBreak = setInterval(updateBreak, 1000);
-        console.log("Taking break!!");
-        myState = 0;
-        breakPaused = 0;
-        showBreakTime.innerText = `${Math.floor(breakSec / 60)}:${breakSec % 60}`;       //  to be changed
         workWindow.hide("slow");
-        timerWindow.hide("slow");
-        breakWindow.show("slow");
-        //  buttons
-        resetAll2.addEventListener("click", ()=>{
-            workSec=-1;
-            breakSec=-1;
-            chrome.storage.sync.set({ "workTimeLeft": -1 },()=>{
-                chrome.storage.sync.set({ "breakTimeLeft": -1 },()=>{
-                    return resetWindow();
+        setTimings.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("You tried to submit!");
+            var enteredWork = workInput.value;
+            var enteredBreak = breakInput.value;
+            console.log("work input : ", workInput.value);
+            console.log("break input : ", breakInput.value);
+            console.log("Work: ", enteredWork, " Break: ", enteredBreak);
+            chrome.storage.sync.set({ "workTimeLeft": enteredWork * 60 }, () => {
+                chrome.storage.sync.set({ "breakTimeLeft": enteredBreak * 60 }, () => {
+                    console.log("All set");
+                    clearInterval(viewBreakInterval);
+                    clearInterval(viewWorkInterval);
+                    viewWork();
                 });
-            });           
+            })
         });
-        //////////////////////////////////////////
-        bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://image.freepik.com/free-photo/take-break-text-cubes-white-background-time-relax-stop-work_274234-834.jpg')";
-        bodyContent.style.backgroundSize = "cover";
     }
 
-    function updateWork() {
-        if (myState === 1 && workPaused !== 1 && workSec > 0) {
-            showWorkTime.innerHTML = `${Math.floor(workSec / 60)}:${workSec % 60}`;
-            workSec--;
-            // localStorage.setItem("workTimeLeft", workSec);
-            chrome.storage.sync.set({ "workTimeLeft": workSec });
-        }
+    function viewWork() {
+        chrome.runtime.sendMessage("start doing work", (response) => {
+            breakWindow.hide("slow");
+            timerWindow.hide("slow");
+            workWindow.show("slow");
+            bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://i.pinimg.com/564x/63/00/a7/6300a74eae90be4938bb39257e3fe6d9.jpg')";
+            bodyContent.style.backgroundSize = "cover";
+            pauseWorkBtn.innerText = "Pause";
+            pauseWorkBtn.style.background="slategray";
+            showWorkTime.style.color="dimgray";
+            clearInterval(viewBreakInterval);
+            clearInterval(viewWorkInterval);
+            viewWorkInterval = setInterval(() => {
+                chrome.storage.sync.get("workTimeLeft", (result1) => {
+                    console.log("Result1 is ", result1.workTimeLeft);
+                    if (result1 <= 0) {
+                        return;
+                    }
+                    var tmpHours = Math.floor(result1.workTimeLeft / 60);
+                    var shownHours="";
+                    if(tmpHours<10){
+                        shownHours="0";
+                    }
+                    shownHours+=tmpHours.toString();
+
+                    var tmpMinutes = Math.floor(result1.workTimeLeft % 60);
+                    var shownMinutes="";
+                    if(tmpMinutes<10){
+                        shownMinutes="0";
+                    }
+                    shownMinutes+=tmpMinutes.toString();
+                    showWorkTime.innerText = `${shownHours}:${shownMinutes}`;
+                });
+            }, refreshRate);
+        });
     }
-    function updateBreak() {
-        console.log("Updating break!!");
-        if (myState === 0 && breakPaused !== 1 && breakSec > 0) {
-            showBreakTime.innerHTML = `${Math.floor(breakSec / 60)}:${breakSec % 60}`;
-            breakSec--;
-            // localStorage.setItem("breakTimeLeft", breakSec);
-            chrome.storage.sync.set({ "breakTimeLeft": breakSec });
-        }
+
+    function viewBreak() {
+        chrome.runtime.sendMessage("take rest", (response) => {
+            timerWindow.hide("slow");
+            breakWindow.show("slow");
+            workWindow.hide("slow");
+            bodyContent.style.backgroundImage = "linear-gradient(45deg, rgba(0,0,0,0.2), white), url('https://image.freepik.com/free-photo/take-break-text-cubes-white-background-time-relax-stop-work_274234-834.jpg')";
+            bodyContent.style.backgroundSize = "cover";
+            pauseBreakBtn.innerText = "Pause";
+            pauseBreakBtn.style.background="slategray";
+            showBreakTime.style.color="dimgray";
+            clearInterval(viewBreakInterval);
+            clearInterval(viewWorkInterval);
+            viewBreakInterval = setInterval(() => {
+                chrome.storage.sync.get("breakTimeLeft", (result1) => {
+                    console.log("Result1 is ", result1.breakTimeLeft);
+                    if (result1 <= 0) {
+                        return;
+                    }
+                    var tmpHours = Math.floor(result1.breakTimeLeft / 60);
+                    var shownHours="";
+                    if(tmpHours<10){
+                        shownHours="0";
+                    }
+                    shownHours+=tmpHours.toString();
+
+                    var tmpMinutes = Math.floor(result1.breakTimeLeft % 60);
+                    var shownMinutes="";
+                    if(tmpMinutes<10){
+                        shownMinutes="0";
+                    }
+                    shownMinutes+=tmpMinutes.toString();
+                    showWorkTime.innerText = `${shownHours}:${shownMinutes}`;
+                    showBreakTime.innerText = `${shownHours}:${shownMinutes}`;
+                });
+            }, refreshRate);
+        })
     }
 });

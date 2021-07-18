@@ -26,6 +26,11 @@
   color: white;
   font-family: monospace;
   font-weight: bolder;
+  margin-left: 2rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 }
 
@@ -36,12 +41,6 @@
   padding: 10px;
 
   text-align: center;
-}
-#taskForm2{
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 #ctime .header1 {
   color: #c61d1d;

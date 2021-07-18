@@ -2,66 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="/customPage/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
-    <!--load all styles -->
-    <link rel="stylesheet" href="./myPage.css">
-    <script src="../jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="/customPage/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
+  <!--load all styles -->
+  <link rel="stylesheet" href="./myPage.css">
+  <script src="../jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <i id="toggle-form" class="fas fa-list-alt"></i>
-        <h1>Productivity management app</h1>
-        <i id="toggleForm1" class="fas fa-cog"></i>
-    
-    </div>
-    <div class="todo-forms">
-        <form id="task-form">
-            <h2 class="form-heading">Tasks</h2>
-            <label for="add-task"></label><input id="add-task" type="text">
-            <button class="todo-button" type="submit">
-                <i class="fas fa-thumbtack"></i>
-            </button>
-        </form>
-        <div class="todo-container">
-            <ul class="todo-list"></ul>
-        </div>  
-               
-    </div>
- <!-- block -->
+  <div class="container">
+    <i id="toggle-form" class="fas fa-list-alt"></i>
+    <h1 class="my-heading">Productivity management app</h1>
+    <i id="toggleForm1" class="fas fa-cog"></i>
 
- <div class = "userForms1">
-  <form id="taskForm1">
-    <div id="textblock">
-      <h2 class="">Block Websites</h2>
-      <h3>press '/ ' before entering new website.</h3>
+  </div>
+  <div class="todo-forms">
+    <form id="task-form">
+      <h2 class="form-heading">Tasks</h2>
+      <label for="add-task"></label><input id="add-task" type="text">
+      <button class="todo-button" type="submit">
+        <i class="fas fa-thumbtack"></i>
+      </button>
+    </form>
+    <div class="todo-container">
+      <ul class="todo-list"></ul>
     </div>
-    <br>
-    <textarea id="textarea" rows="10" cols="30" spellcheck="false"></textarea>
-    <br>
-    
-    <div id="controls">
-      <button id="save">Save</button>
-    <div id = "enable">
-      <strong>Enabled?</strong><input id="checkbox" type="checkbox" checked="checked">
-    </div>
-    </div>
-    
-    
 
-  </form>
-</div>
- <!-- block -->
-      <footer >
-        <div class = "userForms2"> 
-          <form id="taskForm2">
+  </div>
+  <!-- block -->
+
+  <div class="userForms1">
+    <form id="taskForm1">
+      <div id="textblock">
+        <h2 class="">Block Websites</h2>
+        <h3>press '/ ' (forward slash '/' and a SINGLE space ' ') before entering new website.</h3>
+      </div>
+      <br>
+      <textarea id="textarea" rows="10" cols="30" spellcheck="false"></textarea>
+      <br>
+
+      <div id="controls">
+        <button id="save">Save</button>
+        <div id="enable">
+          <strong>Enabled?</strong><input id="checkbox" type="checkbox" checked="checked">
+        </div>
+      </div>
+
+
+
+    </form>
+  </div>
+  <!-- block -->
+  <footer>
+    <div class="userForms2">
+      <form id="taskForm2">
         <link href="js-alarm-clock.css" rel="stylesheet">
         <div id="ctime">
-       
+
           <div class="square">
             <div class="digits" id="chr">00</div>
             <div class="text">HR</div>
@@ -77,29 +77,28 @@
         </div>
 
         <!-- (B) SET ALARM -->
+        
         <div id="tpick">
           <h1 id="heading">SET ALARM</h1>
           <div id="tpick-h"> </div>
           <div id="tpick-m"> </div>
           <div id="tpick-s"> </div>
           <div class="alarm-set-reset-btns">
-            <input type="button" value="Set" id="tset"/>
-            <input type="button" value="Reset" id="treset" disabled/>
+            <input type="button" value="Set" id="tset" />
+            <input type="button" value="Reset" id="treset" disabled />
           </div>
         </div>
       </form>
-      </div> 
-        <!-- (C) ALARM SOUND -->
-        <audio id="alarm-sound" loop>
-          <source src="Old-alarm-clock-sound.mp3" type="audio/mp3">
-        </audio>
-       
-        <div class="foot">
-        <i id="toggleForm2" class="fas fa-clock"></i>
-      </div>
-      
-      </footer>
-      <script src="./myPage.js"></script>  
+    </div>
+    <!-- (C) ALARM SOUND -->
+    <audio id="alarm-sound" loop>
+      <source src="Old-alarm-clock-sound.mp3" type="audio/mp3">
+    </audio>
+    <div class="foot">
+      <i id="toggleForm2" class="fas fa-clock"></i>
+    </div>
+  </footer>
+  <script src="./myPage.js"></script>
 </body>
 
 </html>

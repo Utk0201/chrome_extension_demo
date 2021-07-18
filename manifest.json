@@ -1,7 +1,7 @@
 {
     "manifest_version":2,
     "name":"Productivity management extension",
-    "version":"1.0.0",
+    "version":"2.1.0",
     "description":"Boost your productivity using this extension",
     "icons":{
         "128":"img128.png",
@@ -13,12 +13,14 @@
         "default_popup":"popup.html"
     },
     "background":{
-        "scripts":["background.js"]
+        "scripts":["background.js"],
+        "persistent": false
     },
     "permissions":[
         "storage",
         "notifications",
         "contextMenus",
-        "tabs"
+        "tabs",
+        "alarms"
     ]
 }

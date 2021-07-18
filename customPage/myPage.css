@@ -6,8 +6,8 @@ body {
     color: ghostwhite;
 }
 
-h1 {
-    font-size: 3rem;
+.my-heading{
+    font-size: 4rem;
     font-family: cursive;
 }
 
@@ -43,8 +43,9 @@ i.fas.fa-list-alt:hover {
 
 i.fas.fa-cog {
     font-size: 4rem;
-    margin: 2rem;
+    margin: 2rem 4rem 0 0;
     transition: all 0.4s ease-in-out 0s;
+    height: 5rem;
 }
 
 i.fas.fa-cog:hover {
@@ -55,8 +56,8 @@ i.fas.fa-cog:hover {
 i.fas.fa-clock {
     font-size: 4rem;
     margin: 2rem;
-    transition: all 0s ease-in-out 0s;
-  }
+    transition: all 0.5s ease-in-out 0s;
+}
   
   
   i.fas.fa-clock:hover {
@@ -104,8 +105,6 @@ form#task-form {
     padding: 0rem 4rem 4rem 4rem;
     margin-top: 5rem;
 }
-/*block*/
-
 
 .userForms1 {
     display: flex;
@@ -113,6 +112,7 @@ form#task-form {
     justify-content: center;
     text-align: center;
     align-items: center;
+    font-size: 1.3rem;
 }
 
 #textarea {
@@ -220,6 +220,7 @@ ul.todo-item {
     border-radius: 3rem;
     flex-direction: column;
     margin-top: 2rem;
+    padding: 4em 2rem;
 }
 
 .a-task {
@@ -227,13 +228,16 @@ ul.todo-item {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 2rem;
+    border-radius: 0 0 2rem 2rem;
+    border-bottom: 2px solid floralwhite;
 }
 
 .todo-item {
     list-style-type: none;
     font-size: 2rem;
     align-self: center;
-    font-family: monospace;
+    font-family: cursive;
+    margin: 2rem 0 2rem 0;
 }
 
 .complete-btn {
@@ -290,9 +294,6 @@ i.fas.fa-check:hover {
     transform: scale(1.5);
 }
 
-.form-heading{
-}
-
 button#save {
     height: 3rem;
     width: 5rem;
@@ -308,4 +309,5 @@ button#save {
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1rem;
+    width: 15rem;
 }
