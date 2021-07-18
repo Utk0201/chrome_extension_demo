@@ -24,3 +24,30 @@ It contains **four** features :
 # Screenshots
 ## Pop-up
 ![Pop-up-Screen](./images/Popup.png)
+## Set-time
+![Set-time-Screen](./images/setTime.png)
+## Work-Timer
+![Work-Timer-Screen](./images/work.png)
+## Break-Timer
+![Break-Timer-Screen](./images/break.png)
+## Landing-Page
+![Landing-Page-Screen](./images/landingPage.png)
+## To-do List
+![To-do List-Screen](./images/To-do.png)
+## Adding Task
+* Completed Task are shown in Red colour
+![Adding Task-Screen](./images/To-do1.png)
+## Alarm
+![Alarm-Screen](./images/Alarm.png)
+## Alarm Notification
+![Alarm Notification-Screen](./images/AlarmNotification.png)
+## BlackList URLs
+* Web-sites added to the list are not gonna open until you Enable it.
+![BlackList URLs-Screen](./images/Blocklist.png)
+
+## Authors
+- [Utkarsh Kumar](https://github.com/Utk0201)
+- [Nirav Gusai](https://github.com/Nirav1510)
+- [Utkarsh Patel](https://github.com/utkarshOEE)
+
+**Free Extension, Hell Yeah!**
