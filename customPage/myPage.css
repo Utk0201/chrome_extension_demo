@@ -105,8 +105,6 @@ form#task-form {
     padding: 0rem 4rem 4rem 4rem;
     margin-top: 5rem;
 }
-/*block*/
-
 
 .userForms1 {
     display: flex;
@@ -294,9 +292,6 @@ i.fas.fa-check {
 i.fas.fa-check:hover {
     color: greenyellow;
     transform: scale(1.5);
-}
-
-.form-heading{
 }
 
 button#save {
