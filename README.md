@@ -13,6 +13,8 @@ As a team of 3 developers, we built this chrome extension to help user to track 
     ```
 2. Connect to Chrome in your PC
 * `Load unpack` this repository in extension menu
+3. Make sure the [sync](https://support.google.com/chrome/answer/185277?co=GENIE.Platform%3DDesktop&hl=en-GB) option is turned on 
+4. Make sure Chrome is allowed to show [notifications](https://support.microsoft.com/en-us/windows/change-notification-settings-in-windows-10-ddcbbcd4-0a02-f6e4-fe14-6766d850f294). 
 
 # Features
 It contains **four** features :
