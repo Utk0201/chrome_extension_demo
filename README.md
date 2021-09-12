@@ -1,11 +1,14 @@
-# Description
+# Productivity_Chrome_Extension
+![Productivity_Chrome_Extension](https://socialify.git.ci/Nirav1510/Productivity_Chrome_Extension/image?font=Bitter&forks=1&language=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Dark)
+
+## Description
 As a team of 3 developers, we built this chrome extension to help user to track his/her Daily tasks, Work time, Set an Alarm and to block some unnecessary URL's.
 
-# Tech Stack
+## Tech Stack
 #### Front-end : `HTML, CSS, jQuery and Javascript`
 #### Database : `Chrome's Local storage and Chrome.sync` [Read-more](https://developer.chrome.com/docs/extensions/reference/storage/)
 
-# Guidelines to Setup
+## Guidelines to Setup
 
 1. Clone the project
     ```
@@ -16,7 +19,7 @@ As a team of 3 developers, we built this chrome extension to help user to track 
 3. Make sure the [sync](https://support.google.com/chrome/answer/185277?co=GENIE.Platform%3DDesktop&hl=en-GB) option is turned on 
 4. Make sure Chrome is allowed to show [notifications](https://support.microsoft.com/en-us/windows/change-notification-settings-in-windows-10-ddcbbcd4-0a02-f6e4-fe14-6766d850f294). 
 
-# Features
+## Features
 It contains **four** features :
 1. **To-Do List:** It basically contains your To Do task.
 2. **Work Timer:** It basically contains a timer to control your work hours.
