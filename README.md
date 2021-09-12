@@ -1,5 +1,5 @@
 # Productivity_Chrome_Extension
-![Productivity_Chrome_Extension](https://socialify.git.ci/Nirav1510/Productivity_Chrome_Extension/image?font=Bitter&forks=1&language=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Dark)
+![Productivity_Chrome_Extension](https://socialify.git.ci/Nirav1510/Productivity_Chrome_Extension/image?font=Bitter&language=1&owner=1&pattern=Circuit%20Board&theme=Dark)
 
 ## Description
 As a team of 3 developers, we built this chrome extension to help user to track his/her Daily tasks, Work time, Set an Alarm and to block some unnecessary URL's.
